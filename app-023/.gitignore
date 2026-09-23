@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.env*
+*.log
+coverage/
+.DS_Store
+.vscode/
+.idea/
+design-src/
+*.psd
+# 排练录音
+recordings/
+*.wav
+*.mp3
+# 导出谱
+exports/
+# 测试产物
+test-results/
+playwright-report/

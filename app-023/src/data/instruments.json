@@ -1,0 +1,87 @@
+{
+  "instruments": [
+    {
+      "id": "gu",
+      "name": "鼓",
+      "glyphs": ["咚", "八", "哒"],
+      "synth": { "type": "drum", "baseHz": 82, "decay": 0.22, "noise": true },
+      "techMap": { "咚": [], "八": ["flam"], "哒": ["mute"] },
+      "color": "#8c2f1b"
+    },
+    {
+      "id": "daluo",
+      "name": "大锣",
+      "glyphs": ["哐", "仓", "光"],
+      "synth": { "type": "metal", "baseHz": 196, "decay": 1.4, "noise": true },
+      "techMap": { "哐": [], "仓": ["flam"], "光": ["mute"] },
+      "color": "#a2561c"
+    },
+    {
+      "id": "xiaoluo",
+      "name": "小锣",
+      "glyphs": ["才", "台", "令"],
+      "synth": { "type": "metal", "baseHz": 523, "decay": 0.45, "noise": true },
+      "techMap": { "才": [], "台": ["roll"], "令": ["mute"] },
+      "color": "#1f6f43"
+    },
+    {
+      "id": "bo",
+      "name": "钹",
+      "glyphs": ["七", "采", "齐"],
+      "synth": { "type": "metal", "baseHz": 330, "decay": 0.9, "noise": true },
+      "techMap": { "七": [], "采": ["roll"], "齐": ["mute"] },
+      "color": "#205a8c"
+    },
+    {
+      "id": "bangzi",
+      "name": "梆子",
+      "glyphs": ["的", "衣"],
+      "synth": { "type": "wood", "baseHz": 880, "decay": 0.07, "noise": true },
+      "techMap": { "的": [], "衣": ["mute"] },
+      "color": "#5b3a1a"
+    },
+    {
+      "id": "ban",
+      "name": "板",
+      "glyphs": ["板", "各"],
+      "synth": { "type": "wood", "baseHz": 660, "decay": 0.09, "noise": true },
+      "techMap": { "板": [], "各": ["mute"] },
+      "color": "#4a2d6b"
+    },
+    {
+      "id": "ling",
+      "name": "铃",
+      "glyphs": ["星", "铃"],
+      "synth": { "type": "metal", "baseHz": 1318, "decay": 0.6, "noise": false },
+      "techMap": { "星": [], "铃": ["roll"] },
+      "color": "#7a1f5c"
+    }
+  ],
+  "keyMap": [
+    { "key": "z", "instrumentId": "gu", "glyphIndex": 0 },
+    { "key": "x", "instrumentId": "gu", "glyphIndex": 1 },
+    { "key": "c", "instrumentId": "gu", "glyphIndex": 2 },
+    { "key": "v", "instrumentId": "daluo", "glyphIndex": 0 },
+    { "key": "b", "instrumentId": "daluo", "glyphIndex": 1 },
+    { "key": "n", "instrumentId": "daluo", "glyphIndex": 2 },
+    { "key": "a", "instrumentId": "xiaoluo", "glyphIndex": 0 },
+    { "key": "s", "instrumentId": "xiaoluo", "glyphIndex": 1 },
+    { "key": "d", "instrumentId": "xiaoluo", "glyphIndex": 2 },
+    { "key": "f", "instrumentId": "bo", "glyphIndex": 0 },
+    { "key": "g", "instrumentId": "bo", "glyphIndex": 1 },
+    { "key": "h", "instrumentId": "bo", "glyphIndex": 2 },
+    { "key": "j", "instrumentId": "bangzi", "glyphIndex": 0 },
+    { "key": "k", "instrumentId": "bangzi", "glyphIndex": 1 },
+    { "key": "l", "instrumentId": "ban", "glyphIndex": 0 },
+    { "key": ";", "instrumentId": "ban", "glyphIndex": 1 },
+    { "key": "q", "instrumentId": "ling", "glyphIndex": 0 },
+    { "key": "w", "instrumentId": "ling", "glyphIndex": 1 }
+  ],
+  "durationKeys": {
+    "1": 4,
+    "2": 2,
+    "4": 1,
+    "6": 6,
+    "8": 3
+  }
+}

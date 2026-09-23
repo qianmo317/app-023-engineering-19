@@ -1,0 +1,8 @@
+services:
+  app-023:
+    build: .
+    image: app-023-engineering-19:latest
+    container_name: app-023-engineering-19
+    ports:
+      - "8283:80"
+    restart: unless-stopped

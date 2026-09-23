@@ -1,0 +1,142 @@
+:root {
+  --red: #c0392b;
+  --ink: #1a1a1a;
+  --dim: #777;
+  --bg: #fdfdfb;
+  --panel: #f4f2ec;
+  --border: #ddd8cc;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--ink); }
+
+.top-nav {
+  display: flex; gap: 18px; align-items: center;
+  padding: 8px 16px; background: var(--panel); border-bottom: 2px solid var(--red);
+}
+.top-nav .brand { font-weight: 800; letter-spacing: 2px; color: var(--red); }
+.nav-item { color: var(--ink); text-decoration: none; padding: 4px 10px; border-radius: 4px; }
+.nav-item.on { background: #fff; border: 1px solid var(--border); }
+
+.page { max-width: 1100px; margin: 0 auto; padding: 16px 20px; }
+.dim { color: var(--dim); font-size: 13px; }
+.block { display: block; margin: 6px 0; }
+
+h1 { font-size: 22px; margin: 14px 0 8px; }
+h2 { font-size: 16px; margin: 18px 0 6px; border-left: 3px solid var(--red); padding-left: 8px; }
+
+.btn {
+  border: 1px solid var(--border); background: #fff; padding: 5px 12px; border-radius: 4px;
+  cursor: pointer; font-size: 14px; color: var(--ink); text-decoration: none; display: inline-block;
+}
+.btn:hover { border-color: var(--red); color: var(--red); }
+.btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
+.btn.primary:hover { opacity: 0.9; color: #fff; }
+.btn-sm { border: 1px solid var(--border); background: #fff; padding: 2px 8px; border-radius: 3px; cursor: pointer; font-size: 12px; }
+.btn-sm.on { background: var(--red); color: #fff; border-color: var(--red); }
+.mini {
+  border: 1px solid var(--border); background: #fff; border-radius: 3px; cursor: pointer;
+  font-size: 12px; padding: 1px 6px; margin-left: 4px;
+}
+.mini.on { background: #2f6f3f; color: #fff; border-color: #2f6f3f; }
+.mini.danger { color: var(--red); }
+
+/* ---- 曲目列表 ---- */
+.create-box { display: flex; gap: 10px; align-items: center; margin: 12px 0; flex-wrap: wrap; }
+.create-box input[type='text'], .create-box input:not([type]) {
+  border: 1px solid var(--border); padding: 6px 10px; border-radius: 4px; min-width: 220px;
+}
+.list { width: 100%; border-collapse: collapse; margin: 10px 0; }
+.list th, .list td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.list th { color: var(--dim); font-weight: 500; }
+.score-link { color: var(--ink); text-decoration: none; font-weight: 600; }
+.score-link:hover { color: var(--red); }
+
+/* ---- 编辑器 ---- */
+.editor-page { display: flex; flex-direction: column; height: 100vh; outline: none; }
+.editor-header {
+  display: flex; gap: 10px; align-items: center; padding: 8px 14px;
+  background: var(--panel); border-bottom: 1px solid var(--border); flex-wrap: wrap;
+}
+.title-input { font-size: 16px; font-weight: 700; border: 1px solid transparent; background: transparent; width: 180px; padding: 4px 6px; }
+.title-input:hover, .title-input:focus { border-color: var(--border); background: #fff; }
+.style-input { font-size: 13px; border: 1px solid var(--border); border-radius: 4px; padding: 4px 8px; width: 110px; }
+.saved-at { margin-left: auto; }
+
+.editor-body { display: flex; flex: 1; min-height: 0; }
+.inst-panel {
+  width: 230px; background: var(--panel); border-right: 1px solid var(--border);
+  padding: 10px; overflow-y: auto; flex-shrink: 0;
+}
+.inst-panel h3 { margin: 2px 0 8px; font-size: 14px; color: var(--dim); }
+.inst-row {
+  display: flex; align-items: center; gap: 6px; padding: 6px 8px; margin-bottom: 4px;
+  background: #fff; border: 1px solid var(--border); border-radius: 4px; cursor: pointer;
+}
+.inst-row.sel { border-color: var(--red); box-shadow: 0 0 0 1px var(--red) inset; }
+.inst-name { font-weight: 700; width: 34px; }
+.glyph-chip {
+  display: inline-block; border: 1px solid var(--border); border-radius: 3px;
+  padding: 0 4px; margin-right: 3px; background: #fffdf7; font-size: 14px;
+}
+.inst-panel .hint { margin-top: 12px; font-size: 12px; color: var(--dim); line-height: 1.7; }
+.inst-panel .hint b { color: var(--ink); }
+
+.score-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.duration-bar {
+  display: flex; gap: 6px; padding: 6px 10px; border-bottom: 1px solid var(--border);
+  background: #fbfaf6; flex-wrap: wrap;
+}
+.score-scroll { flex: 1; overflow: auto; padding: 12px; background: #fff; }
+.score-svg { display: block; }
+
+/* ---- 试听控制台 ---- */
+.transport {
+  display: flex; gap: 14px; align-items: center; padding: 8px 14px;
+  border-top: 2px solid var(--red); background: var(--panel); flex-wrap: wrap;
+}
+.bpm-box { display: flex; align-items: center; gap: 6px; }
+.bpm-box button {
+  width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border);
+  background: #fff; cursor: pointer; font-size: 17px; line-height: 1;
+}
+.bpm-box span[data-testid='bpm-value'] { font-size: 19px; font-weight: 800; min-width: 40px; text-align: center; }
+.loop-box { display: flex; align-items: center; gap: 8px; }
+.pos { min-width: 80px; }
+.free-note { color: #a2561c; font-size: 12px; }
+
+/* ---- 打印 ---- */
+.print-page { padding: 24px 32px; background: #fff; min-height: 100vh; }
+.print-toolbar { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+.print-title { text-align: center; font-size: 26px; letter-spacing: 6px; margin: 4px 0 2px; }
+.print-sub { text-align: center; color: var(--dim); margin: 0 0 16px; }
+.print-score { width: 100%; overflow-x: auto; }
+.print-foot { margin-top: 18px; }
+
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .print-page { padding: 0; }
+  .score-svg { page-break-inside: avoid; }
+}
+
+/* ---- 曲牌库 ---- */
+.pattern-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin: 12px 0 24px; }
+.pattern-card { border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; background: #fff; }
+.pattern-card h3 { margin: 0 0 4px; }
+.pattern-card p { font-size: 13px; margin: 4px 0 10px; }
+
+/* ---- 设置 ---- */
+kbd { background: #fff; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 4px; padding: 1px 7px; font-size: 13px; }
+tr.waiting { background: #fff3cd; }
+input[type='number'] { width: 76px; border: 1px solid var(--border); border-radius: 3px; padding: 3px 6px; }
+
+/* ---- 手机横屏 ---- */
+@media (max-width: 760px) {
+  .editor-body { flex-direction: column; }
+  .inst-panel { width: 100%; display: flex; gap: 8px; overflow-x: auto; }
+  .inst-panel h3, .inst-panel .hint { display: none; }
+  .inst-row { flex-shrink: 0; }
+}

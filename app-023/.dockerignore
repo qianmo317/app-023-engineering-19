@@ -1,0 +1,23 @@
+node_modules
+dist
+.git
+.gitignore
+.env
+.env.*
+*.log
+coverage
+.vscode
+.idea
+# 说明：nginx.conf 必须进入构建上下文（Dockerfile 第 2 阶段 COPY 它），
+# 不能按 README §12 忽略，否则 docker build 报 "nginx.conf: not found"。
+Dockerfile
+README.md
+test-results
+playwright-report
+e2e
+tests
+design-src
+*.wav
+*.psd
+recordings
+exports
