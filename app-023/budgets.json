@@ -1,0 +1,7 @@
+{
+  "$comment": "构建产物体积上限（字节）。script/style 为每个 .js/.css 文件分别适用的上限；raw=原始大小，gzip/brotli=按对应压缩算法压缩后的大小。audioSampleMaxBytes：产物中单个音频采样文件允许的最大字节数，0 表示不允许出现任何音频采样文件（本应用全部实时合成，不应携带采样）。当前基线：js raw 181180 / gzip 59376 / brotli 51857；css raw 5575 / gzip 1694 / brotli 1452。",
+  "script": { "raw": 256000, "gzip": 76800, "brotli": 66560 },
+  "style": { "raw": 20480, "gzip": 6144, "brotli": 5120 },
+  "audioSampleMaxBytes": 0,
+  "audioSampleExtensions": ["wav", "mp3", "ogg", "flac", "aac", "m4a", "aif", "aiff", "opus"]
+}

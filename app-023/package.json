@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "postbuild": "node scripts/check-dist.mjs",
+    "check:dist": "node scripts/check-dist.mjs",
     "preview": "vite preview --port 4173 --strictPort",
     "test": "vitest run",
     "test:watch": "vitest",
