@@ -40,7 +40,7 @@
 cd app-023
 npm install
 npm run dev        # 开发服务器（默认 5173）
-npm run build      # tsc -b && vite build（含类型检查）
+npm run build      # tsc -b && vite build（含类型检查），postbuild 自动核对产物预算/哈希/禁带音频
 npm test           # 单元测试（58 个用例）
 npm run e2e        # Playwright E2E（13 个用例，自动起 4174 preview）
 ```
@@ -188,11 +188,25 @@ e2e/app.spec.ts         13 用例：真实点击全链路（见 6.3）
 ## 8. 构建与部署
 
 ```bash
-npm run build                 # 产物在 dist/（哈希文件名）
+npm run build                 # 产物在 dist/（哈希文件名）；构建后自动跑体积/产物检查
+npm run check:bundle          # 单独重跑产物检查（不必重新构建）
 docker compose up -d --build  # 多阶段构建 → nginx，宿主 8103 端口
 curl http://localhost:8103/healthz
 docker compose down
 ```
+
+### 8.1 构建后产物检查（`postbuild`）
+
+`npm run build` 成功后由 npm `postbuild` 钩子自动执行 [scripts/check-bundle.mjs](scripts/check-bundle.mjs)（Docker 多阶段构建里同样生效）。脚本只用 Node 内置模块（`zlib` 做 gzip/brotli 压缩），**零依赖、不联网**，本地与容器内结论一致。
+
+检查项，任一失败即以非零状态退出（构建流水线随之失败）：
+
+1. **体积清单**：列出 `dist/` 内每个 `.js/.css` 的原始、gzip-9、brotli-11 三种字节数；
+2. **预算比对**：与入仓库的 [bundle-budget.json](bundle-budget.json) 逐文件、逐压缩方式比对，失败信息写明「文件 + 压缩方式 + 实际/预算 + 超出字节数」；另有分组合计预算（全部 JS、全部 CSS、JS+CSS 总计）；
+3. **禁止音频采样**：扩展名黑名单（wav/mp3/m4a/aac/ogg/opus/flac/aiff/webm/…）**外加文件头嗅探**（RIFF/WAVE、OggS、fLaC、ID3、MPEG 帧头、M4A ftyp），改扩展名也能发现；另有全类型单文件大小上限；
+4. **入口哈希一致性**：`index.html` 引用的本地 JS/CSS 必须带内容哈希（Vite 默认 `name-[hash].ext`），且引用的文件在 `dist/` 中真实存在；未被入口引用的 JS/CSS（未来动态 import 产物）只警告。
+
+结果同时打到控制台和 `dist/bundle-report.txt`（人可读的清单）。预算阈值在 `bundle-budget.json` 以字节为单位，调整阈值需连同报告一起评审；**新增 JS/CSS 产物若没有匹配的预算规则会直接失败**，必须先在预算文件登记。
 
 - [Dockerfile](Dockerfile)：`node:20-alpine` 构建 → `nginx:1.27-alpine-slim` 运行（成品 21.1MB）。
 - [nginx.conf](nginx.conf)：SPA 回退、`/assets/` immutable 一年缓存、`index.html` no-cache、gzip。

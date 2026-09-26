@@ -1,0 +1,50 @@
+{
+  "$comment": "构建产物体积预算（字节）。由 scripts/check-bundle.mjs 在每次 npm run build 后自动核对；任何一项超限构建即以非零状态结束。改预算需走代码评审。",
+  "compression": {
+    "gzipLevel": 9,
+    "brotliQuality": 11
+  },
+  "trackedExtensions": [".js", ".mjs", ".css"],
+  "entry": "index.html",
+  "hashPattern": "^.+[-_.][A-Za-z0-9_-]{8,}\\.(?:m?js|css)$",
+  "forbiddenAudioExtensions": [
+    ".wav", ".mp3", ".m4a", ".aac", ".ogg", ".oga", ".opus",
+    ".flac", ".aiff", ".aif", ".webm", ".weba", ".amr"
+  ],
+  "maxAssetBytes": 524288,
+  "requireBudgetFor": [".js", ".mjs", ".css"],
+  "files": [
+    {
+      "pattern": "assets/**/*.js",
+      "maxRawBytes": 327680,
+      "maxGzipBytes": 98304,
+      "maxBrotliBytes": 90112
+    },
+    {
+      "pattern": "assets/**/*.css",
+      "maxRawBytes": 16384,
+      "maxGzipBytes": 5120,
+      "maxBrotliBytes": 4608
+    }
+  ],
+  "totals": [
+    {
+      "pattern": "assets/**/*.js",
+      "maxRawBytes": 327680,
+      "maxGzipBytes": 98304,
+      "maxBrotliBytes": 90112
+    },
+    {
+      "pattern": "assets/**/*.css",
+      "maxRawBytes": 16384,
+      "maxGzipBytes": 5120,
+      "maxBrotliBytes": 4608
+    },
+    {
+      "pattern": "assets/**/*.{js,mjs,css}",
+      "maxRawBytes": 344064,
+      "maxGzipBytes": 103424,
+      "maxBrotliBytes": 94720
+    }
+  ]
+}

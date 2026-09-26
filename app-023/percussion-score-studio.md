@@ -129,5 +129,5 @@ curl -I http://localhost:8103/          # 200 且 Cache-Control: no-cache
 docker compose down
 ```
 
-- 本地自检：`npm run build`（`tsc -b` 类型检查 + `vite build`）零错误；`npm test` 58 例全绿；`E2E_BASE_URL=http://localhost:8103 npx playwright test` 可对容器复跑 13 例 E2E。
+- 本地自检：`npm run build`（`tsc -b` 类型检查 + `vite build`）零错误，并由 `postbuild` 自动执行 `scripts/check-bundle.mjs`：列出每个 JS/CSS 的原始/gzip/brotli 体积、与 `bundle-budget.json` 逐文件及合计比对（超限非零退出并报出文件与超出字节数）、确认产物无音频采样文件（扩展名 + 文件头双重识别）、入口 HTML 引用带哈希且与磁盘文件一致；人可读报告写入 `dist/bundle-report.txt`，纯 Node 内置模块、离线可复跑（也可 `npm run check:bundle`）；`npm test` 58 例全绿；`E2E_BASE_URL=http://localhost:8103 npx playwright test` 可对容器复跑 13 例 E2E。
 - 数据边界：曲目存在浏览器 IndexedDB，按源隔离，dev（5173）、preview（4174）、容器（8103）三处数据互不相通，属预期行为。
